@@ -52,19 +52,19 @@ namespace ly
 		Tick(deltaTime);
 	}
 
-	void Application::Render()
+	void Application::Render() // Virtual function can be overriden by the user
 	{
 
 		sf::RectangleShape rect{ sf::Vector2f{100,100} };
 
-		rect.setFillColor(sf::Color::Blue);
+		rect.setFillColor(sf::Color::Red);
 		rect.setOrigin(50, 50);
 		rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
 
 		m_window.draw(rect);
 
 	}
-	void Application::Tick(float deltaTime)
+	void Application::Tick(float deltaTime) // Virtual function can be overriden by the user
 	{
 		std::cout << "The framerate is: " << 1.f / deltaTime << std::endl;
 	}
