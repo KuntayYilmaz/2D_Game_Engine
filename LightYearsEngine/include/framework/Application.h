@@ -10,10 +10,10 @@ namespace ly
 		void Run();
 
 	private:
-		void RenderInternal();
+		void RenderInternal(int x,int y);
 		void TickInternal(float deltaTime);
 		
-		virtual void Render();
+		virtual void Render(int x,int y);
 		virtual void Tick(float deltaTime);
 
 

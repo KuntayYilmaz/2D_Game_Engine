@@ -15,6 +15,8 @@ namespace ly
 		m_TickClock.restart();
 		float accumulatedTime = 0.f;
 		float targetDeltaTime = 1.f / m_TargetFrameRate;
+		int x{ 0 };
+		int y{ 0 };
 		while (m_window.isOpen())
 		{
 			
@@ -29,20 +31,29 @@ namespace ly
 
 			accumulatedTime += m_TickClock.restart().asSeconds();
 
+			
+
 			while (accumulatedTime > targetDeltaTime)
 			{
 				accumulatedTime -= targetDeltaTime;
 				TickInternal(targetDeltaTime);
-				RenderInternal();
+				RenderInternal(x,y);
+				++x;
+				++y;
+			}
+			if (x == 70)
+			{
+				x = 0;
+				y = 0;
 			}
 			
 		}
 	}
-	void Application::RenderInternal()
+	void Application::RenderInternal(int x,int y)
 	{
 		m_window.clear();
 
-		Render();
+		Render(x,y);
 
 		m_window.display();
 	}
@@ -52,14 +63,15 @@ namespace ly
 		Tick(deltaTime);
 	}
 
-	void Application::Render() // Virtual function can be overriden by the user
+	void Application::Render(int x,int y) // Virtual function can be overriden by the user
 	{
 
 		sf::RectangleShape rect{ sf::Vector2f{100,100} };
 
 		rect.setFillColor(sf::Color::Red);
-		rect.setOrigin(50, 50);
-		rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
+		rect.setOrigin(0,0);
+		//rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
+		rect.setPosition(10*x, 10*y);
 
 		m_window.draw(rect);
 
