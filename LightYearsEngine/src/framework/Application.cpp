@@ -1,5 +1,5 @@
 #include "framework/Application.h"
-#include <iostream>
+#include <framework/Core.h>
 
 namespace ly
 {
@@ -66,6 +66,6 @@ namespace ly
 	}
 	void Application::Tick(float deltaTime) // Virtual function can be overriden by the user
 	{
-		std::cout << "The framerate is: " << 1.f / deltaTime << std::endl;
+		LOG("The framerate is: %f\n", 1.f / deltaTime);
 	}
 }
