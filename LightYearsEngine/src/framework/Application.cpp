@@ -1,14 +1,15 @@
 #include "framework/Application.h"
 #include <framework/Core.h>
+#include <framework/World.h>
 
 namespace ly
 {
-	Application::Application()
-		: m_window{ sf::VideoMode(800,800),"Light Years"},
-		m_TargetFrameRate{144.f},
-		m_TickClock{}
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
+		: m_window{ sf::VideoMode(windowWidth,windowHeight),title, style},
+		m_TargetFrameRate{ 144.f },
+		m_TickClock{},
+		m_currentWorld{ nullptr }
 	{
-			
 	}
 	void Application::Run()
 	{
@@ -36,48 +37,43 @@ namespace ly
 			while (accumulatedTime > targetDeltaTime)
 			{
 				accumulatedTime -= targetDeltaTime;
-				TickInternal(targetDeltaTime);
-				RenderInternal(x,y);
-				++x;
-				++y;
+				TickInternal(targetDeltaTime); //TICKING
+				RenderInternal(); //RENDERING
 			}
-			if (x == 70)
-			{
-				x = 0;
-				y = 0;
-			}
+			
 			
 		}
 	}
-	void Application::RenderInternal(int x,int y)
+	void Application::RenderInternal()
 	{
 		m_window.clear();
 
-		Render(x,y);
+		Render();
 
 		m_window.display();
 	}
 
 	void Application::TickInternal(float deltaTime)
 	{
+		 
 		Tick(deltaTime);
+
+		if (m_currentWorld)
+		{
+			m_currentWorld->TickInternal(deltaTime);
+		}
 	}
 
-	void Application::Render(int x,int y) // Virtual function can be overriden by the user
+	void Application::Render() // Virtual function can be overriden by the user
 	{
-
-		sf::RectangleShape rect{ sf::Vector2f{100,100} };
-
-		rect.setFillColor(sf::Color::Red);
-		rect.setOrigin(0,0);
-		//rect.setPosition(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
-		rect.setPosition(10*x, 10*y);
-
-		m_window.draw(rect);
+		if (m_currentWorld)
+		{
+			m_currentWorld->Render(m_window);
+		}
 
 	}
 	void Application::Tick(float deltaTime) // Virtual function can be overriden by the user
 	{
-		LOG("The framerate is: %f\n", 1.f / deltaTime);
+		
 	}
 }

@@ -3,8 +3,14 @@
 
 namespace ly
 {
+	class Actor;
 	class GameApplication : public Application
 	{
 
+	public:
+		GameApplication();
+	private:
+
+		weak<Actor> ActorPrime;
 	};
 }
