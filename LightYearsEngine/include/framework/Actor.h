@@ -18,12 +18,24 @@ namespace ly
 		void SetTexture(const std::string& texturePath);
 		void Render(sf::RenderWindow& window);
 
+		void setActorLocation(const sf::Vector2f& newLoc);
+		void setActorRotation(float newRot);
+		void AddActorLocationOffset(const sf::Vector2f& offsetAmt);
+		void AddActorRotationOffset(float offsetAmt);
+
+
+		sf::Vector2f GetActorLocation() const;
+		float GetActorRotation() const;
+		sf::Vector2f GetActorForwardDirection() const;
+		sf::Vector2f GetActorRightDirection() const;
+
 	private:
 		World* m_OwningWorld;
 		bool m_BeganPlay;
 
+		void CenterPivot();
 		sf::Sprite m_Sprite;
-		sf::Texture m_Texture;
+		shared<sf::Texture> m_Texture;
 
 	};
 

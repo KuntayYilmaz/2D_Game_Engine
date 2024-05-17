@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "framework/Core.h"
 
+
 namespace ly
 {
 	class World;
@@ -25,7 +26,10 @@ namespace ly
 		sf::RenderWindow m_window;
 		float m_TargetFrameRate;
 		sf::Clock m_TickClock;
+
 		shared<World> m_currentWorld;
+		sf::Clock m_CleanCycleClock;
+		float m_CleanCycleInterval;
 	};
 
 	template<typename WorldType>

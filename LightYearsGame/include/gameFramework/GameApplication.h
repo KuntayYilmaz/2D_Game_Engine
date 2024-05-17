@@ -11,6 +11,6 @@ namespace ly
 		GameApplication();
 	private:
 
-		weak<Actor> ActorPrime;
+		weak<Actor> m_ActorPrime;
 	};
 }

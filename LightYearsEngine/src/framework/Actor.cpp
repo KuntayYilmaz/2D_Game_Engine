@@ -1,5 +1,7 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
+#include "framework/AssetManager.h",
+#include "framework/MathUtility.h"
 
 namespace ly
 {
@@ -14,7 +16,7 @@ namespace ly
 
 	Actor::~Actor()
 	{
-		LOG("Actor destroyed\n"); 
+		LOG("Actor Destroyed\n"); 
 	}
 	
 	void Actor::BeginPlayInternal()
@@ -36,23 +38,26 @@ namespace ly
 	
 	void Actor::BeginPlay()
 	{
-		LOG("Actor started playing\n");
+
 	}
 	
 	void Actor::Tick(float deltaTime)
 	{
-		LOG("Actor Ticking\n");
+		
 	}
 	
 	void Actor::SetTexture(const std::string& texturePath)
 	{
-		m_Texture.loadFromFile(texturePath);
-		m_Sprite.setTexture(m_Texture);
 
-		int textureWidth = m_Texture.getSize().x;
-		int textureHeight = m_Texture.getSize().y;
+		m_Texture = AssetManager::Get().LoadTexture(texturePath);
+		if (!m_Texture) return;
 
+		m_Sprite.setTexture(*m_Texture);
+
+		int textureWidth = m_Texture->getSize().x;
+		int textureHeight = m_Texture->getSize().y;
 		m_Sprite.setTextureRect(sf::IntRect{ sf::Vector2i{},sf::Vector2i{textureWidth,textureHeight} });
+		CenterPivot();
 	}
 	
 	void Actor::Render(sf::RenderWindow& window)
@@ -61,5 +66,45 @@ namespace ly
 			return;
 
 		window.draw(m_Sprite);
+	}
+
+
+
+	void Actor::setActorLocation(const sf::Vector2f& newLoc)
+	{
+		m_Sprite.setPosition(newLoc);
+	}
+	void Actor::setActorRotation(float newRot)
+	{
+		m_Sprite.setRotation(newRot);
+	}
+	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
+	{
+		setActorLocation(GetActorLocation() + offsetAmt);
+	}
+	void Actor::AddActorRotationOffset(float offsetAmt)
+	{
+		setActorRotation(GetActorRotation() + offsetAmt);
+	}
+	sf::Vector2f Actor::GetActorLocation() const
+	{
+		return m_Sprite.getPosition();
+	}
+	float Actor::GetActorRotation() const
+	{
+		return m_Sprite.getRotation();
+	}
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		return RotationToVector(GetActorRotation());
+	}
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector(GetActorRotation() + 90.f);
+	}
+	void Actor::CenterPivot()
+	{
+		sf::FloatRect bound = m_Sprite.getGlobalBounds();
+		m_Sprite.setOrigin(bound.width / 2.f, bound.height / 2.f);
 	}
 }
