@@ -14,7 +14,7 @@ namespace ly
 	{
 		weak<World> newWorld = LoadWorld<World>();
 		ActorPrime = newWorld.lock()->SpawnActor<Actor>();
-		ActorPrime.lock()->SetTexture("C:/dev/LightYears/LightYearsGame/assets/Nairan/Designs - Base/PNGs/Nairan - Battlecruiser - Base.png");
+		ActorPrime.lock()->SetTexture("C:/dev/LightYears/LightYearsGame/assets/Nairan/Designs-Base/PNGs/Nairan-Battlecruiser-Base.png");
 		
 	}
 
