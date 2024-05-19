@@ -23,8 +23,11 @@ namespace ly
 		void AddActorLocationOffset(const sf::Vector2f& offsetAmt);
 		void AddActorRotationOffset(float offsetAmt);
 
+		sf::Vector2u GetWindowSize() const;
 
 		sf::Vector2f GetActorLocation() const;
+		sf::FloatRect GetActorBounds() const;
+
 		float GetActorRotation() const;
 		sf::Vector2f GetActorForwardDirection() const;
 		sf::Vector2f GetActorRightDirection() const;

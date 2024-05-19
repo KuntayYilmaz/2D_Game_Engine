@@ -2,6 +2,8 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h",
 #include "framework/MathUtility.h"
+#include "framework/World.h"
+
 
 namespace ly
 {
@@ -74,34 +76,52 @@ namespace ly
 	{
 		m_Sprite.setPosition(newLoc);
 	}
+
 	void Actor::setActorRotation(float newRot)
 	{
 		m_Sprite.setRotation(newRot);
 	}
+
 	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
 	{
 		setActorLocation(GetActorLocation() + offsetAmt);
 	}
+
 	void Actor::AddActorRotationOffset(float offsetAmt)
 	{
 		setActorRotation(GetActorRotation() + offsetAmt);
 	}
+
+	sf::Vector2u Actor::GetWindowSize() const
+	{
+		return m_OwningWorld->GetWindowSize();
+	}
+
 	sf::Vector2f Actor::GetActorLocation() const
 	{
 		return m_Sprite.getPosition();
 	}
+
+	sf::FloatRect Actor::GetActorBounds() const
+	{
+		return m_Sprite.getGlobalBounds();
+	}
+
 	float Actor::GetActorRotation() const
 	{
 		return m_Sprite.getRotation();
 	}
+
 	sf::Vector2f Actor::GetActorForwardDirection() const
 	{
 		return RotationToVector(GetActorRotation());
 	}
+
 	sf::Vector2f Actor::GetActorRightDirection() const
 	{
 		return RotationToVector(GetActorRotation() + 90.f);
 	}
+
 	void Actor::CenterPivot()
 	{
 		sf::FloatRect bound = m_Sprite.getGlobalBounds();

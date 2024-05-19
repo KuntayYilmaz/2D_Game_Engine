@@ -4,6 +4,7 @@
 namespace ly
 {
 	class Actor;
+	class PlayerSpaceship;
 	class GameApplication : public Application
 	{
 
@@ -11,6 +12,6 @@ namespace ly
 		GameApplication();
 	private:
 
-		weak<Actor> m_ActorPrime;
+		weak<PlayerSpaceship> testSpaceship;
 	};
 }
