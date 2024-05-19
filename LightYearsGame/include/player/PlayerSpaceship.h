@@ -7,8 +7,8 @@ namespace ly
 	class PlayerSpaceship : public Spaceship
 	{
 	public:
-		PlayerSpaceship(World* owningWorld, const std::string& path = "Nairan/Designs-Base/PNGs/Nairan - Dreadnought - Base.png");
-
+		PlayerSpaceship(World* owningWorld, const std::string& path = "Nairan/Designs-Base/PNGs/Nairan-Battlecruiser-Base.png");
+		
 		virtual void Tick(float deltaTime) override; 
 		void SetSpeed(float newSpeed) { m_speed = newSpeed; }
 		float GetSpeed() const { return m_speed; }

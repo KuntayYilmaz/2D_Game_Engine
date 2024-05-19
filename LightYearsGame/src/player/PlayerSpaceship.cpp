@@ -62,15 +62,15 @@ namespace ly
 		{
 			m_moveInput.x = 0.f;
 		}
-		if (actorLocation.y < 0 && m_moveInput.y == -1.f)
+		if ((actorLocation.y - GetActorBounds().height/2) < 0 && m_moveInput.y == -1.f)
 		{
 			m_moveInput.y = 0.f;
 		}
-		if (actorLocation.x > GetWindowSize().x  && m_moveInput.x == 1.f)
+		if ((actorLocation.x + GetActorBounds().width/2) > GetWindowSize().x && m_moveInput.x == 1.f)
 		{
 			m_moveInput.x = 0.f;
 		}
-		if (actorLocation.y > GetWindowSize().y && m_moveInput.y == 1.f)
+		if ((actorLocation.y + GetActorBounds().height/2)> GetWindowSize().y && m_moveInput.y == 1.f)
 		{
 			m_moveInput.y = 0.f;
 		}

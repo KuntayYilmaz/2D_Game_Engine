@@ -79,7 +79,7 @@ namespace ly
 		}
 	}
 
-	void Application::Render() // Virtual function can be overriden by the user
+	void Application::Render() 
 	{
 		if (m_currentWorld)
 		{
@@ -88,7 +88,7 @@ namespace ly
 
 	}
 
-	void Application::Tick(float deltaTime) // Virtual function can be overriden by the user
+	void Application::Tick(float deltaTime) 
 	{
 		
 	}
