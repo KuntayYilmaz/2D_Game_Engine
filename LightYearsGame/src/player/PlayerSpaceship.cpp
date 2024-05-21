@@ -9,7 +9,7 @@ namespace ly
 		: Spaceship{ owningWorld,path },
 		m_moveInput{},
 		m_speed{500.f},
-		m_Shooter{ new LaserShooter{this,0.1f}}
+		m_Shooter{ new LaserShooter{this,0.05f}}
 	{
 
 	}
@@ -61,7 +61,7 @@ namespace ly
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 		{
-			setActorRotation(GetActorRotation() + 90.f);
+			setActorRotation(GetActorRotation() + 5.f);
 		}
 
 	}
