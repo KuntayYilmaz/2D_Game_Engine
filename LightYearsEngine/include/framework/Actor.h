@@ -13,8 +13,10 @@ namespace ly
 		virtual ~Actor();
 		void BeginPlayInternal();
 		void TickInternal(float deltaTime);
+
 		virtual void BeginPlay();
 		virtual void Tick(float deltaTime);
+		
 		void SetTexture(const std::string& texturePath);
 		void Render(sf::RenderWindow& window);
 
@@ -28,10 +30,15 @@ namespace ly
 		sf::Vector2f GetActorLocation() const;
 		sf::FloatRect GetActorBounds() const;
 
+		sf::FloatRect GetActorGlobalBounds() const;
+
 		float GetActorRotation() const;
 		sf::Vector2f GetActorForwardDirection() const;
 		sf::Vector2f GetActorRightDirection() const;
 
+		World* GetWorld() const { return m_OwningWorld; }
+
+		bool IsActorOutOfWindowBounds() const;
 	private:
 		World* m_OwningWorld;
 		bool m_BeganPlay;
