@@ -8,7 +8,7 @@ namespace ly
 	PlayerSpaceship::PlayerSpaceship(World* owningWorld, const std::string& path)
 		: Spaceship{ owningWorld,path },
 		m_moveInput{},
-		m_speed{300.f},
+		m_speed{500.f},
 		m_Shooter{ new LaserShooter{this,0.1f}}
 	{
 
@@ -19,6 +19,7 @@ namespace ly
 		Spaceship::Tick(deltaTime);
 		HandleInput();
 		ApplyInput(deltaTime);
+	
 	}
 
 
@@ -49,6 +50,7 @@ namespace ly
 		{
 			m_moveInput.x = -1.f;
 		}
+
 		ClampInputOnEdge();
 		NormalizeInput();
 
@@ -56,6 +58,12 @@ namespace ly
 		{
 			Shoot();
 		}
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+		{
+			setActorRotation(GetActorRotation() + 90.f);
+		}
+
 	}
 
 	void PlayerSpaceship::ApplyInput(float deltaTime)

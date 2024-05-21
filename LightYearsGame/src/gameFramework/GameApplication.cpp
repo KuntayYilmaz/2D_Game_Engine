@@ -21,6 +21,7 @@ namespace ly
 		testSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
 		testSpaceship.lock()->setActorLocation(sf::Vector2f{ 450.f,450.f });
 		testSpaceship.lock()->setActorRotation(0.f);
+	
 		
 		
 	}

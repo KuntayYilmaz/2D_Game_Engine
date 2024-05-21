@@ -29,7 +29,5 @@ namespace ly
 		weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"Nairan/Weapon Effects - Projectiles/PNGs/Nairan - Bolt.png");
 		newBullet.lock()->setActorLocation(GetOwner()->GetActorLocation());
 		newBullet.lock()->setActorRotation(GetOwner()->GetActorRotation());
-		
-		
 	}
 }

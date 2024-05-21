@@ -10,8 +10,8 @@ namespace ly
 
 	public:
 		GameApplication();
-	private:
 
+	private:
 		
 		weak<PlayerSpaceship> testSpaceship;
 	};

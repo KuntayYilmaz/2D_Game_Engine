@@ -24,6 +24,7 @@ namespace ly
 		sf::Vector2f m_moveInput; 
 		float m_speed;
 
+
 		unique<LaserShooter> m_Shooter;
 	};
 }

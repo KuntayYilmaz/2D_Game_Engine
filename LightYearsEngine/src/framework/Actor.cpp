@@ -117,15 +117,20 @@ namespace ly
 		return m_Sprite.getRotation();
 	}
 
+
+
 	sf::Vector2f Actor::GetActorForwardDirection() const
 	{
-		return RotationToVector(GetActorRotation() + 90.f);
+		return RotationToVector(GetActorRotation() - 90.f);
 	}
 
 	sf::Vector2f Actor::GetActorRightDirection() const
 	{
 		return RotationToVector(GetActorRotation());
 	}
+
+
+
 
 	bool Actor::IsActorOutOfWindowBounds() const
 	{

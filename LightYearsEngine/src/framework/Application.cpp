@@ -55,7 +55,7 @@ namespace ly
 
 	void Application::RenderInternal()
 	{
-		m_window.clear();
+		m_window.clear(sf::Color(1,52,32,255));
 
 		Render();
 
