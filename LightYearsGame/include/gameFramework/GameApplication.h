@@ -12,7 +12,8 @@ namespace ly
 		GameApplication();
 
 	private:
-		
+		void Tick(float deltaTime);
 		weak<PlayerSpaceship> testSpaceship;
+		float counter;
 	};
 }

@@ -3,9 +3,11 @@
 #include "framework/Object.h" 
 #include "framework/Core.h"
 
+class b2Body;
 namespace ly
 {
 	class World;
+
 	class Actor : public Object
 	{
 	public:
@@ -39,14 +41,29 @@ namespace ly
 		World* GetWorld() const { return m_OwningWorld; }
 
 		bool IsActorOutOfWindowBounds() const;
+
+		void SetEnablePhysics(bool enable);
+		virtual void OnActorBeginOverlap(Actor* other);
+		virtual void OnActorEndOverlap(Actor* other);
+
+		virtual void Destroy() override;
+
 	private:
+		void InitializePhysics();
+		void UnInitializePhysics();
+		void UpdatePhysicsBodyTransform();
+		void CenterPivot();
+
+
+
 		World* m_OwningWorld;
 		bool m_BeganPlay;
 
-		void CenterPivot();
 		sf::Sprite m_Sprite;
 		shared<sf::Texture> m_Texture;
 
+		b2Body* m_PhysicsBody;
+		bool m_PhysicsEnabled;
 	};
 
 }
