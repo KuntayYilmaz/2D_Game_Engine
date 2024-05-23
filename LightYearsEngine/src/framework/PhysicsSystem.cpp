@@ -106,6 +106,7 @@ namespace ly
 
 	void PhysicsContactListener::EndContact(b2Contact* contact)
 	{
+
 		Actor* ActorA = nullptr;
 		Actor* ActorB = nullptr;
 
@@ -128,6 +129,7 @@ namespace ly
 		{
 			ActorB->OnActorEndOverlap(ActorA);
 		}
+
 	}
 
 }

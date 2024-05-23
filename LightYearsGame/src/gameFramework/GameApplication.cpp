@@ -27,10 +27,7 @@ namespace ly
 		enemySpaceship.lock()->setActorLocation(sf::Vector2f{ 400.f,100.f });
 		
 		counter = 0.f;
-		
-
-		
-		
+	
 	}
 
 	void GameApplication::Tick(float deltaTime)
@@ -44,9 +41,4 @@ namespace ly
 			}
 		}
 	}
-
-	
-	
-
-
 }
