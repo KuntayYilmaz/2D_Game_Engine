@@ -8,8 +8,9 @@ namespace ly
 		m_Speed{speed},
 		m_Damage{damage}
 	{
-
+		SetTeamID(owner->GetTeamID()); //SET BULLET SAME TEAM AS THE OWNER
 	}
+
 
 	void Bullet::SetSpeed(float newSpeed)
 	{
@@ -19,6 +20,15 @@ namespace ly
 	void Bullet::SetDamage(float newDamage)
 	{
 		m_Damage = newDamage;
+	}
+
+	void Bullet::OnActorBeginOverlap(Actor* other)
+	{
+		if (IsOtherEnemy(other))
+		{
+			other->ApplyDamage(GetDamage());
+			Destroy();
+		}
 	}
 
 	void Bullet::Tick(float deltaTime)

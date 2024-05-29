@@ -11,8 +11,8 @@ namespace ly
 		virtual bool IsOnCooldown() const override;
 
 	private:
+		
 		virtual void ShootImpl() override;
-
 		sf::Clock m_CooldownClock;
 		float m_CooldownTime;
 	};

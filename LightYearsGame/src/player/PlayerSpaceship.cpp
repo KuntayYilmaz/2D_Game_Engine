@@ -9,9 +9,9 @@ namespace ly
 		: Spaceship{ owningWorld,path },
 		m_moveInput{},
 		m_speed{500.f},
-		m_Shooter{ new LaserShooter{this,0.1f}}
+		m_Shooter{ new LaserShooter{this,0.2f}}
 	{
-
+		SetTeamID(1);
 	}
 
 	void PlayerSpaceship::Tick(float deltaTime)

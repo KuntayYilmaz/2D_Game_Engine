@@ -11,7 +11,9 @@ namespace ly
 
 		void SetSpeed(float newSpeed);
 		void SetDamage(float newDamage);
+		float GetDamage() const { return m_Damage; }
 
+		virtual void OnActorBeginOverlap(Actor* other) override;
 		virtual void Tick(float deltaTime) override;
 		virtual void BeginPlay() override;
 	private:
