@@ -1,13 +1,14 @@
 #pragma once
 #include "framework/Core.h"
 #include "SFML/Graphics.hpp"
+#include "framework/Object.h"
 
 namespace ly
 {
 
 	class Actor;
 	class Application;
-	class World
+	class World : public Object
 	{
 	public:
 		
@@ -25,11 +26,11 @@ namespace ly
 		void CleanCycle();
 	private:
 		
-		//FUNCTIONS
-		void BeginPlay();
-		void Tick(float deltaTime);
+		
+		virtual void BeginPlay();
+		virtual void Tick(float deltaTime);
 
-		//VARIABLES
+		
 		Application* m_OwningApp;
 		bool m_BeganPlay;
 

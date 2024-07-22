@@ -140,7 +140,7 @@ namespace ly
 
 
 
-	bool Actor::IsActorOutOfWindowBounds() const
+	bool Actor::IsActorOutOfWindowBounds(float allowance) const
 	{
 		float windowWidth = GetWorld()->GetWindowSize().x;
 		float windowHeight = GetWorld()->GetWindowSize().y;
@@ -150,19 +150,19 @@ namespace ly
 
 		sf::Vector2f actorLocation = GetActorLocation();
 
-		if (actorLocation.x < -width)
+		if (actorLocation.x < -width - allowance)
 		{
 			return true;
 		}
-		if (actorLocation.x > windowWidth + width)
+		if (actorLocation.x > windowWidth + width + allowance)
 		{
 			return true;
 		}
-		if (actorLocation.y < -height)
+		if (actorLocation.y < -height - allowance)
 		{
 			return true;
 		}
-		if (actorLocation.y > windowHeight + height)
+		if (actorLocation.y > windowHeight + height + allowance)
 		{
 			return true;
 		}
@@ -201,6 +201,8 @@ namespace ly
 
 	bool Actor::IsOtherEnemy(Actor* other) const
 	{
+		if (other == nullptr) return false;
+
 		if (GetTeamID() == GetNeutralTeamId() || other->GetTeamID() == GetNeutralTeamId())
 		{
 			return false;
